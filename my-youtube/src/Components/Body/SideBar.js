@@ -9,20 +9,21 @@ import { AiOutlineLike } from "react-icons/ai";
 import { MdOutlinePlaylistPlay } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
 import { useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 function Sidebar() {
-    const isMenuOpen =useSelector((store)=>store.app.isMenuOpen);
+    const isMenuOpen =useSelector(store=>store.app.isMenuOpen);
 
     // Early Return
     if(!isMenuOpen) return null;
     return (
-        <div className='p-5 px-4  pr-6 w-fit h-screen bg-gray-200'>
+        <div className='p-5 px-4  pr-6 w-fit h-screen  bg-gray-200'>
             <section className='border-b-2 border-black mb-4'>
-                <div className='flex gap-x-2 items-center pb-2 '>
-                    <MdHomeFilled size={28} />
-                    <h1 className=' text-2xl'>Home</h1>
-
-                </div>
+                <Link to={"/"}>
+                    <div className='flex gap-x-2 items-center pb-2 '>
+                        <MdHomeFilled size={28} />
+                        <h1 className=' text-2xl'>Home</h1>
+                    </div>
+                </Link>
                 <div className='flex gap-2 items-center pb-2'>
                 <SiYoutubeshorts size={28} />
                 <h1 className=' text-2xl'>Shorts</h1>

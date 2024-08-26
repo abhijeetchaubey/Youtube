@@ -10,6 +10,8 @@ function Header() {
     const dispatch = useDispatch();
 
     const toggleMenuHandler = ()=>{
+        console.log("Hamburger clicked!");
+        
         dispatch(toggleMenu());
         console.log("Menu State Toggled");
         
@@ -18,7 +20,7 @@ function Header() {
         <div className='grid grid-flow-col p-4 m-2 mx-0 shadow-lg rounded-md'>
             {/* logo */}
             <div className='flex  items-center gap-x-4 col-span-1'>
-            <Hamburger onClick={() => toggleMenuHandler()} />
+            <div onClick={toggleMenuHandler} ><Hamburger/></div>
 
                 <img
                 className='h-6'
