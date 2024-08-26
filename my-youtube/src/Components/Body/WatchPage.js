@@ -43,7 +43,6 @@ function WatchPage() {
                 </iframe>
                 </div>
                 <div>
-                    {/* comments */}
                 </div>
             </div>
         </div>
