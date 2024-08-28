@@ -4,22 +4,33 @@ import { FaUserCircle } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import logo from '../../Utils/Youtube Premium logo.png'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {toggleMenu} from '../../Utils/appSlice'
 import { YOUTUBE_SEARCH_API } from '../../Utils/constant';
+import { cacheResults } from '../../Utils/searchSlice';
 
 function Header() {
 
     const [searchQuerry,setSearchQuerry]= useState("");
     const [suggestions,setSuggestions]= useState([])
     const [showSuggestions,setShowSuggestions]=useState(false);
+    
+    const searchCache =useSelector(store=>store.search)
+    const dispatch =useDispatch()
+
     useEffect(()=>{
         // API call
         // make an api call after every key press 
         // but if the difference b/w 2 API call is <200ms
         // decline the API call
-
-        const timer =setTimeout(()=>getSearchSuggestions(),200);
+// Debouncing->
+        const timer =setTimeout(()=>{
+            if(searchCache[searchQuerry]){
+                setSuggestions(searchCache[searchQuerry]);
+            } else{
+                getSearchSuggestions()
+            }
+            },200);
 
         return()=>{
             clearTimeout(timer)
@@ -27,18 +38,6 @@ function Header() {
         }
     },[searchQuerry])
 
-// let's suppose a
-//  key -i is pressed 
-//      - render the component 
-//        - useEffect();
-//      - Start timer => make api call after 200ms
-// key ip
-//      -destroy the component (useEffect return method call)
-//     -re render the component 
-            // -useEffect()
-            // start timer => make api call after 200ms
-            // 
-            // setTimeout(200) - make api call
 
     const getSearchSuggestions =async()=>{
         console.log("API call",searchQuerry);
@@ -47,8 +46,11 @@ function Header() {
         // console.log(json[1]);
         setSuggestions(json[1]);
         
+        // Update cache 
+        dispatch(cacheResults({
+            [searchQuerry]:json[1],
+        }))
     }
-    const dispatch = useDispatch();
 
     const toggleMenuHandler = ()=>{
         console.log("Hamburger clicked!");

@@ -86,3 +86,27 @@ Performance:
 Debouncing with 200ms 
     -if the diff between 2 key stroke is <200ms - DECLINE the Api call
     ->200ms make an  API call 
+
+
+# Cache 
+    - To store Cache we need data strucutre to store ->
+        if we store in array[i,ip,iphone] => T.C = o(n)
+        if we use object to store {
+            i:
+            ip:
+            iphone:
+        }  T.C will be =>o(1)
+
+# Debouncing
+// let's suppose a
+//  key -i is pressed 
+//      - render the component 
+//        - useEffect();
+//      - Start timer => make api call after 200ms
+// key ip
+//      -destroy the component (useEffect return method call)
+//     -re render the component 
+            // -useEffect()
+            // start timer => make api call after 200ms
+            // 
+            // setTimeout(200) - make api call

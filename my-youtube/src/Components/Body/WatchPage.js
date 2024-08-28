@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { closeMenu } from '../../Utils/appSlice';
 import {  useSearchParams } from 'react-router-dom';
 import { YOUTUBE_COMMENTS_API } from '../../Utils/constant';
-
+import CommentsContainer from './CommentsContainer';
 
 function WatchPage() {
 
@@ -31,7 +31,6 @@ function WatchPage() {
     return (
         <div className='px-5 pl-10 pt-2 '>
             <div>
-                <div>
                 <iframe 
                 width="1200" 
                 height="600" 
@@ -41,9 +40,9 @@ function WatchPage() {
                 referrerPolicy="strict-origin-when-cross-origin" 
                 allowFullScreen>
                 </iframe>
-                </div>
-                <div>
-                </div>
+            </div>
+            <div>
+                <CommentsContainer/>
             </div>
         </div>
     )
