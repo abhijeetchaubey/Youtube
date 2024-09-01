@@ -110,3 +110,11 @@ Debouncing with 200ms
             // start timer => make api call after 200ms
             // 
             // setTimeout(200) - make api call
+
+# Handling live chat 
+    - two ways 
+      - Web Sockets -> it is a two way connection b/w UI and Server, its a bidirectional live data . There is no regular Interval(means data will come randomly). eg-> Trading Apps, WhatsApp
+
+      - Long Polling / Api Polling -> UI request the server and data flows server to ui  after an interval eg:- Gmail, API Polling, Youtube Live Chat
+
+
