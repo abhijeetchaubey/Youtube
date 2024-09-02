@@ -30,7 +30,8 @@ function WatchPage() {
                     allowFullScreen>
                     </iframe>
                 </div>
-                <div className='w-full'>
+                <div className='w-full '>
+                    <h1 className='ml-2 mb-1 font-semibold p-0 mt-0'>Top Chat</h1> 
                     <LiveChat/>
                 </div>
             </div>
