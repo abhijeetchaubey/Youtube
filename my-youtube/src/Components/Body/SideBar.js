@@ -10,12 +10,12 @@ import { MdOutlinePlaylistPlay } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import SidebarClosed from './SideBar_close';
 function Sidebar() {
     const isMenuOpen =useSelector(store=>store.app.isMenuOpen);
 
     // Early Return
-    if(!isMenuOpen) return null;
+    if(!isMenuOpen) return <SidebarClosed/>;
     return (
         <div className='p-5 px-4  pr-6 w-fit h-screen  bg-gray-200'>
             <section className='border-b-2 border-black mb-4'>

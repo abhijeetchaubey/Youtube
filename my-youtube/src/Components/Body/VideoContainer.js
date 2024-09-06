@@ -17,7 +17,7 @@ function VideoContainer() {
     }
     return (
         
-        <div className='flex flex-wrap ml-2'>
+        <div className='flex flex-wrap  ml-2'>
             {videos[0] && <AdVideoCard info={videos[0]}/>}
             {videos.map(video=>(
                 <Link to={"/watch?v="+ video.id} key={video.id}>

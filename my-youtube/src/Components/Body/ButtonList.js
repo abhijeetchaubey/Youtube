@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button'
 
-const lists =["All", "Development","Live","Gaming","Cricket","Comedy"]
+const lists =["All", "Development","Live","Gaming","Cricket","Comedy","Data Structure","Music","Software Engineering","News","Live","Recurssion"]
 
 function ButtonList() {
     return (
