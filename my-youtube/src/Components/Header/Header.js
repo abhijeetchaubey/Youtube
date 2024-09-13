@@ -43,7 +43,7 @@ function Header() {
         console.log("API call",searchQuerry);
         const data = await fetch(YOUTUBE_SEARCH_API+searchQuerry);
         const json = await data.json()
-        // console.log(json[1]);
+        console.log(json[1]);
         setSuggestions(json[1]);
         
         // Update cache 
@@ -59,15 +59,20 @@ function Header() {
         console.log("Menu State Toggled");
         
     }
+    const handleSuggestionClick = (suggestions)=>{
+        console.log("sUGGESTION cLICKED");
+        setSearchQuerry(suggestions)
+        setShowSuggestions(false)
+    }
 
     return (
-        <div className='grid grid-flow-col p-4 m-2 mx-0 shadow-lg rounded-md '>
+        <div className='grid grid-flow-col p-4 m-2 mx-0  mt-0 shadow-lg rounded-md  '>
             {/* logo */}
             <div className='flex  items-center gap-x-4 col-span-1'>
             <div onClick={toggleMenuHandler} ><Hamburger/></div>
 
                 <img
-                className='h-6'
+                className='h-6 text-white'
                 src={logo}
                 alt='YOutube-logo'
                 />
@@ -79,19 +84,24 @@ function Header() {
                         <input 
                         value={searchQuerry}
                         onFocus={()=>setShowSuggestions(true)}
-                        onBlur={()=>setShowSuggestions(false)}
+                        onBlur={()=>setTimeout(()=>setShowSuggestions(false),400)}
                         onChange={(e)=>setSearchQuerry(e.target.value)}
-                        className='w-1/2 border placeholder:text-gray-700 border-gray-800 rounded-l-full border-r-0 p-2 pl-3' type='text' placeholder='Search' name='Search'/>
+                        className='w-1/2 border placeholder:text-white hover:bg-[#3f3c3c] bg-[#282828] border-gray-800 rounded-l-full border-r-0 p-2 pl-3' type='text' placeholder='Search' name='Search'/>
                         <button 
                         title='Search'
                         className=' border border-gray-800  rounded-r-full bg-[#b6a3a327] p-2 px-5 '><CiSearch size={24} className=''/>
                         </button>
                     </div>
                     {showSuggestions && (
-                        <div className=' absolute bg-white py-2 px-5 w-[24rem] cursor-pointer'>
+                        <div className=' absolute bg-black text-white py-2 px-5 w-[24rem] cursor-pointer'
+                        // onMouseDown={(e) => e.preventDefault()}
+                        >
                         <ul>
-                            {suggestions.map((s)=>
-                                <li className='py-2 px-3 shadow-sm hover:bg-gray-100 rounded-xl' key={s}>{s} </li>
+                            {suggestions.map((suggestions)=>
+                                <li className='py-2 px-3 shadow-sm hover:bg-[#282828] rounded-xl'
+                                key={suggestions}
+                                onClick={()=>handleSuggestionClick(suggestions)}
+                                >{suggestions} </li>
                             )}
                         </ul>
                     </div>

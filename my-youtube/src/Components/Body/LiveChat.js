@@ -6,7 +6,7 @@ import { generateRandomName, makeRandomMessage } from "../../Utils/helper";
 
 // API Polling 
 
-const LiveChat = () => {
+const LiveChat = ({className}) => {
     const [LiveMessage, setLiveMessage]= useState("")
 
     
@@ -36,14 +36,14 @@ const LiveChat = () => {
 
     return (
         <>
-        <div className="w-full h-[600px] ml-2 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse">
+<div className={`w-[400px] h-[600px] ml-2 p-2 pt-4 border border-white border-b-0 rounded-t-none rounded-b-none bg-black text-white rounded-lg overflow-y-scroll flex flex-col-reverse ${className}`}>
             <div ref={chatContainerRef} >
             {ChatMessages.map((c, index) => (
                 <ChatMessage key={index} name={c.name} message={c.message} />
             ))}
             </div>
         </div>
-        <form className="w-full p-2 ml-2 border border-black flex " onSubmit={(e)=>{
+        <form className="w-full  ml-2  border-black flex " onSubmit={(e)=>{
             e.preventDefault()
             dispatch(addMessage({
                 name:"Abhijeet",
@@ -52,14 +52,17 @@ const LiveChat = () => {
             setLiveMessage("");
             
         }}>
+            <div className={`border border-white  w-[400px] h-[70px] ml-0 rounded-lg rounded-t-none ${className}`}>
             <input 
             value={LiveMessage}
             onChange={(e)=>{
                 setLiveMessage(e.target.value)
             }}
-            className="w-96"
+            className="w-[300px] p-2 rounded-full bg-[#282828] text-white m-2 ml-8"
+            placeholder="Chat as Subscriber..."
             type="text"/>
-            <button type="submit" className="px-2 mx-2 bg-green-200">send</button>
+            {/* <button type="submit" className="px-2 mx-2 bg-green-200">send</button> */}
+            </div>
         </form>
         </>
 

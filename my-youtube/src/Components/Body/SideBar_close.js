@@ -3,9 +3,10 @@ import { SiYoutubeshorts } from "react-icons/si";
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { SiYoutubemusic } from "react-icons/si";
 import { MdDownload } from "react-icons/md";
+
 const SidebarClosed =()=>{
     return(
-        <div className="h-screen w-[100px] flex-col items-center bg-gray-300">
+        <div className="h-screen w-[100px] flex-col items-center bg-black text-white">
             <div className="mb-8 mt-2 ">
                 <div className="px-8">
                     <MdHomeFilled size={28} />

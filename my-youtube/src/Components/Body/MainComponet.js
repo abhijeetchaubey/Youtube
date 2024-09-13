@@ -6,7 +6,7 @@ function MainComponet() {
     return (
         <div className=''>
             <ButtonList/>
-            <VideoContainer/>
+            <VideoContainer className=''/>
         </div>
     )
 }

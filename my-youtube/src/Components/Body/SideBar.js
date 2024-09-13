@@ -17,7 +17,7 @@ function Sidebar() {
     // Early Return
     if(!isMenuOpen) return <SidebarClosed/>;
     return (
-        <div className='p-5 px-4  pr-6 w-fit h-screen  bg-gray-200'>
+        <div className=' p-5 px-4  pr-6 w-fit h-screen  bg-black text-white '>
             <section className='border-b-2 border-black mb-4'>
                 <Link to={"/"}>
                     <div className='flex gap-x-2 items-center pb-2 '>

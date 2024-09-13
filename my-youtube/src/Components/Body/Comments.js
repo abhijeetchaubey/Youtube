@@ -6,7 +6,7 @@ const Comments =({data})=>{
     const {name,text,replies}=data;
     return(
         <div>
-            <div className="flex gap-3 shadow-lg bg-gray-100 p-2 rounded-lg items-center">
+            <div className="flex gap-3 shadow-lg bg-[#010000] text-white p-2 rounded-lg items-center">
                 <div>
                     <FaUserCircle size={32}/>
                 </div>

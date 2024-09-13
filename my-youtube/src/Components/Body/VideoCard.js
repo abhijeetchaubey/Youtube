@@ -1,4 +1,7 @@
 import React from 'react';
+import { formatNumber, timeAgo } from '../../Utils/constant';
+
+// import { useSelector } from 'react-redux';
 
 function VideoCard({ info }) {
     if (!info) {
@@ -6,12 +9,13 @@ function VideoCard({ info }) {
     }
 
     const { snippet, statistics } = info;
+    // const isMenuOpen =useSelector(store=>store.app.isMenuOpen);
 
     // Use optional chaining and default values to prevent errors
     return (
-        <div className='m-2 w-72 min-h-56 shadow-lg flex-4'>
+        <div className={`m-2  min-h-56 shadow-lg `}>
             <img 
-                className='rounded-lg'
+                className='rounded-lg w-full h-full'
                 alt='' 
                 src={snippet?.thumbnails?.medium?.url || 'unavailable'}
             />
@@ -23,9 +27,14 @@ function VideoCard({ info }) {
                     {snippet?.channelTitle || 'unavailable'}
                 </li>
                 <li className='font-medium'>
-                    {statistics?.viewCount ? `${statistics.viewCount / 1000}K views` : 'unavailable'}
+                    {statistics?.viewCount ? formatNumber(statistics.viewCount) : 'unavailable'} 
+                    <span className='text-center pl-1 inline '>•
+                    </span>
+                    <span className='pl-2 text-[#FFFAFA]'>{snippet?.publishedAt ? timeAgo(snippet.publishedAt) : 'Date unavailable'}
+                    </span>
                 </li>
             </ul>
+
         </div>
     );
 }
