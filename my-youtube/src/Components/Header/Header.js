@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Hamburger from 'hamburger-react'
+import { GiHamburgerMenu } from "react-icons/gi";
+
 import { FaUserCircle } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -68,8 +69,9 @@ function Header() {
     return (
         <div className='grid grid-flow-col p-4 m-2 mx-0  mt-0 shadow-lg rounded-md  '>
             {/* logo */}
-            <div className='flex  items-center gap-x-4 col-span-1'>
-            <div onClick={toggleMenuHandler} ><Hamburger/></div>
+            <div className='flex  items-center gap-x-5 ml-4 col-span-1'>
+            <div onClick={toggleMenuHandler} ><GiHamburgerMenu  size={32}/>
+            </div>
 
                 <img
                 className='h-6 text-white'

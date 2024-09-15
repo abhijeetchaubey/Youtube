@@ -12,17 +12,23 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { AiFillLike } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
-
+import { useSelector } from 'react-redux';
 
 
 function WatchPage() {
+    const [showDescription,setShowDescription] = useState()
+    const isMenuOpen = useSelector(store => store.app.isMenuOpen);
+
     const [searchParams] = useSearchParams();
     const videoId = searchParams.get("v");
 
-    const [like,setLike]= useState(false)
+    const [like,setLike]= useState(true)
     
-    const [showChat,SetOpenChat]=useState(true)
+    const [showChat,SetOpenChat]=useState(false)
 
+    const handleDescriptionBox=()=>{
+        setShowDescription(!showDescription)
+    }
     const handleLikeIcon=()=>{
         setLike(!like)
     }
@@ -44,12 +50,13 @@ function WatchPage() {
     }
 
     return (
-        <div className='px-5 pl-10 pt-2 w-full'>
-            <div className='flex gap-10'>
+        <div className='px-5 pl-10 pt-2 w-fit'>
+            <div className='flex gap-4'>
                 <div>
+                    
                     <iframe
-                        width="900"
-                        height="600"
+                        width={isMenuOpen ?"870":"900"}
+                        height={isMenuOpen?"650":"600"}
                         src={`https://www.youtube.com/embed/${videoId}`}
                         title={videoData.snippet.title}  // Use video title
                         frameBorder="0"
@@ -88,15 +95,25 @@ function WatchPage() {
                             </div>
                             
                         </div>
-                        <div className='flex flex-wrap gap-x-2 mt-8 bg-[#282828] rounded-xl p-4'>
+                        <div className='flex flex-wrap gap-x-2 mt-8 bg-[#282828] rounded-xl p-4 overflow-y-auto w-fit  h-fit'>
                         <h1 className='text-xl font-bold'>{formatNumber(videoData.statistics.viewCount) +" views"}</h1>
                             <h1 className='text-xl font-bold inline'>{timeAgo(videoData.snippet?.publishedAt)}</h1>
                             <br/>
-                            {videoData.snippet.tags.map((map)=><p className='text-sky-400'>{`#${map}`}</p>)}
-
+                            {videoData?.snippet?.tags?.map((tag, index) => (
+                                    <p key={index} className='text-sky-400'>{`#${tag}`}</p>
+                                    
+                                ))}
                             <div>
+                                <span 
+                                onClick={handleDescriptionBox}
+                                className='text-sky-700 cursor-pointer'>
+                                    {showDescription ? "":"show More..."}
+                                </span>                                
                                 <br/>
-                                {videoData.snippet.localized.description}
+                                {showDescription && videoData.snippet.localized.description}
+                                <p 
+                                onClick={handleDescriptionBox}
+                                className='text-sky-700 cursor-pointer'>{showDescription ? "Show Less...":""}</p>
                             </div>
                         </div>
                     </div>
@@ -105,7 +122,7 @@ function WatchPage() {
                     <h1 className='ml-2 rounded-lg rounded-b-none mt-0 border border-white w-[400px] p-4 font-bold text-xl'>
                         <div className='flex items-center'>
                         <p className='font-bold'>Top Chat</p>
-                        <p className='cursor-pointer'>{showChat ?<RiArrowDropDownLine size={24} onClick={toggleChat}/>:<RiArrowDropUpLine onClick={toggleChat} size={24} />}</p>
+                        <p className='cursor-pointer'>{showChat ?<RiArrowDropUpLine onClick={toggleChat} size={24} />:<RiArrowDropDownLine size={24} onClick={toggleChat}/>}</p>
 
                         </div>
                     </h1>

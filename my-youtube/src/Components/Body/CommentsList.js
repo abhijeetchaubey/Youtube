@@ -6,7 +6,7 @@ function CommentsList({info}) {
     
     return (
         <div>{info.map((comment,index)=>
-            <div className='pl-5 border border-l-black ml-5 '>
+            <div className='pl-5  ml-5  '>
                 <Comments key={index} data={comment}/>
             </div>
         )

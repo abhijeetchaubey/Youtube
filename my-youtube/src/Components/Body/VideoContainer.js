@@ -21,7 +21,7 @@ function VideoContainer() {
     };
 
     return (
-        <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} ml-2`}>
+        <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} ml-2 overflow-y-auto w-fit bg-black h-screen`}>
             {videos[0] && <AdVideoCard info={videos[0]} />}
             {videos.map((video) => (
                 <Link

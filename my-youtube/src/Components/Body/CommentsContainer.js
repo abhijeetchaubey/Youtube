@@ -60,8 +60,8 @@ const commentsData =[
 ]
 function CommentsContainer() {
     return (
-        <div className='m-5 p-2'>
-            <h1 className='text-2xl font-bold'>comments:</h1>
+        <div className='m-5 ml-0 p-2 '>
+            <h1 className='text-2xl font-bold mb-2'>comments:</h1>
             <div className=''>
                 {commentsData.map((comment,index)=>
                     <Comments key={index} data={comment}/>
