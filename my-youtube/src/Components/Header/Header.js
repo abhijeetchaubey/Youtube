@@ -67,59 +67,104 @@ function Header() {
     }
 
     return (
-        <div className='grid grid-flow-col p-4 m-2 mx-0  mt-0 shadow-lg rounded-md  '>
-            {/* logo */}
-            <div className='flex  items-center gap-x-5 ml-4 col-span-1'>
-            <div onClick={toggleMenuHandler} ><GiHamburgerMenu  size={32}/>
-            </div>
+<div className='p-2 md:p-4 m-2 mx-0 mt-0 shadow-lg rounded-md'>
+  {/* Desktop/tablet layout using grid | mobile uses flex */}
+  <div className='flex md:grid md:grid-cols-12 items-center justify-between gap-y-2'>
 
-                <img
-                className='h-6 text-white'
-                src={logo}
-                alt='YOutube-logo'
-                />
-            </div>
-            {/* Search bar */}
-            <div className='col-span-10 flex items-center px-48'>
-                <div>
-                    <div className='flex items-center w-[50vw] relative z-[1]'>
-                        <input 
-                        value={searchQuerry}
-                        onFocus={()=>setShowSuggestions(true)}
-                        onBlur={()=>setTimeout(()=>setShowSuggestions(false),400)}
-                        onChange={(e)=>setSearchQuerry(e.target.value)}
-                        className='w-1/2 border placeholder:text-white hover:bg-[#3f3c3c] bg-[#282828] border-gray-800 rounded-l-full border-r-0 p-2 pl-3' type='text' placeholder='Search' name='Search'/>
-                        <button 
-                        title='Search'
-                        className=' border border-gray-800  rounded-r-full bg-[#b6a3a327] p-2 px-5 '><CiSearch size={24} className=''/>
-                        </button>
-                    </div>
-                    {showSuggestions && (
-                        <div className=' absolute bg-black text-white py-2 px-5 w-[24rem] cursor-pointer'
-                        // onMouseDown={(e) => e.preventDefault()}
-                        >
-                        <ul>
-                            {suggestions.map((suggestions)=>
-                                <li className='py-2 px-3 shadow-sm hover:bg-[#282828] rounded-xl'
-                                key={suggestions}
-                                onClick={()=>handleSuggestionClick(suggestions)}
-                                >{suggestions} </li>
-                            )}
-                        </ul>
-                    </div>
-                    )}
-                </div>
-                
-            </div>
-            {/* user-icon */}
-            <div className='col-span-1 flex gap-4 items-center'>
-            <IoIosNotificationsOutline size={32} />
-                <FaUserCircle size={32}/>
+    {/* Left section: Hamburger + Logo (mobile: flex left, desktop: col-span-2) */}
+    <div className='flex items-center gap-x-3 md:gap-x-5 ml-2 md:ml-4 col-span-2'>
+      <div onClick={toggleMenuHandler}>
+        <GiHamburgerMenu size={28} className='md:size-28' />
+      </div>
+      <img className='h-6 md:h-8 text-white' src={logo} alt='YouTube-logo' />
+    </div>
 
-            </div>
+    {/* Center section: Search bar (desktop only) */}
+    <div className='hidden md:flex justify-center col-span-8'>
+      <div className='w-[50vw] relative z-[1]'>
+        <div className='flex items-center'>
+          <input
+            value={searchQuerry}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 400)}
+            onChange={(e) => setSearchQuerry(e.target.value)}
+            className='w-full border placeholder:text-white hover:bg-[#3f3c3c] bg-[#282828] border-gray-800 rounded-l-full border-r-0 p-2 pl-3 text-sm md:text-base'
+            type='text'
+            placeholder='Search'
+          />
+          <button
+            title='Search'
+            className='border border-gray-800 rounded-r-full bg-[#b6a3a327] p-2 px-3 md:px-5'
+          >
+            <CiSearch size={20} />
+          </button>
         </div>
-        
-    )
+        {showSuggestions && (
+          <div className='absolute bg-black text-white py-2 px-3 md:px-5 w-full cursor-pointer'>
+            <ul>
+              {suggestions.map((sug) => (
+                <li
+                  key={sug}
+                  onClick={() => handleSuggestionClick(sug)}
+                  className='py-2 px-3 shadow-sm hover:bg-[#282828] rounded-xl'
+                >
+                  {sug}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {/* Right section: Notifications + User Icon (mobile: flex right, desktop: col-span-2) */}
+    <div className='flex items-center gap-2 md:gap-4 justify-end mr-2 md:mr-4 col-span-2'>
+      <IoIosNotificationsOutline size={24} className='md:size-32' />
+      <FaUserCircle size={24} className='md:size-32' />
+    </div>
+  </div>
+
+  {/* Mobile search bar: below icon row only on mobile */}
+  <div className='flex md:hidden justify-center mt-3'>
+    <div className='w-full relative z-[1]'>
+      <div className='flex items-center'>
+        <input
+          value={searchQuerry}
+          onFocus={() => setShowSuggestions(true)}
+          onBlur={() => setTimeout(() => setShowSuggestions(false), 400)}
+          onChange={(e) => setSearchQuerry(e.target.value)}
+          className='w-5/6 border placeholder:text-white hover:bg-[#3f3c3c] bg-[#282828] border-gray-800 rounded-l-full border-r-0 p-2 pl-3 text-sm'
+          type='text'
+          placeholder='Search'
+        />
+        <button
+          title='Search'
+          className='border border-gray-800 rounded-r-full bg-[#b6a3a327] p-2 px-3'
+        >
+          <CiSearch size={20} />
+        </button>
+      </div>
+      {showSuggestions && (
+        <div className='absolute bg-black text-white py-2 px-3 w-[90vw] cursor-pointer'>
+          <ul>
+            {suggestions.map((sug) => (
+              <li
+                key={sug}
+                onClick={() => handleSuggestionClick(sug)}
+                className='py-2 px-3 shadow-sm hover:bg-[#282828] rounded-xl'
+              >
+                {sug}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+)
+
 }
 
 export default Header

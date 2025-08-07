@@ -13,10 +13,10 @@ function VideoCard({ info }) {
 
     // Use optional chaining and default values to prevent errors
     return (
-        <div className={`m-2  min-h-56 shadow-lg `}>
-            <img 
-                className='rounded-lg w-full h-full'
-                alt='' 
+        <div className={`m-2 min-h-56 shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md`}>
+            <img
+                className='rounded-lg w-full h-40 object-cover'
+                alt=''
                 src={snippet?.thumbnails?.medium?.url || 'unavailable'}
             />
             <ul className='p-4 pb-2 pt-0'>

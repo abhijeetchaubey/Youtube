@@ -25,12 +25,12 @@ import { CiStreamOn } from "react-icons/ci";
 
 
 function Sidebar() {
-    const isMenuOpen =useSelector(store=>store.app.isMenuOpen);
+    const isMenuOpen = useSelector(store => store.app.isMenuOpen);
 
     // Early Return
-    if(!isMenuOpen) return <SidebarClosed/>;
+    if (!isMenuOpen) return <SidebarClosed />;
     return (
-        <div className=' p-5 px-4  pr-6 w-full h-screen  bg-black text-white  overflow-y-auto '>
+        <div className='hidden md:block p-5 px-4 pr-6 w-full md:w-64 h-screen bg-black text-white overflow-y-auto'>
             <section className='border-b-2  border-white mb-4'>
                 <Link to={"/"}>
                     <div className='flex gap-x-2 items-center pb-2 '>

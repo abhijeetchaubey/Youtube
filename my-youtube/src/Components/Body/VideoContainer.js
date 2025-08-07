@@ -21,18 +21,18 @@ function VideoContainer() {
     };
 
     return (
-        <div className={`grid ${isMenuOpen ? 'grid-cols-3' : 'grid-cols-4'} ml-2 overflow-y-auto w-fit bg-black h-screen`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 ml-2 overflow-y-auto w-full bg-black h-full`}>
             {videos[0] && <AdVideoCard info={videos[0]} />}
             {videos.map((video) => (
                 <Link
                     to={{
                         pathname: "/watch",
-                        search: `?v=${video.id}`, // Pass the video ID as a query parameter
+                        search: `?v=${video.id}`,
                     }}
                     key={video.id}
-                    state={{ videoData: video }} // Pass the full video data as state
+                    state={{ videoData: video }}
                 >
-                    <VideoCard info={video} className={`${isMenuOpen ? 'w-96' : 'w-72'}`} />
+                    <VideoCard info={video} className="w-full" />
                 </Link>
             ))}
         </div>
